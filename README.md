@@ -1,47 +1,67 @@
-# Make your website with R Markdown in minutes
+# Robinson lab website
 
-This is a template (and tutorial) for creating your website with R Markdown in minutes.
+This is a template that we forked from [here](https://github.com/privefl/rmarkdown-website-template) for the basic structure and added many components.
 
-The official document from RStudio can be found [here](http://rmarkdown.rstudio.com/rmarkdown_websites.html).
+More details on making HTML documents from Rmarkdown can be found [here](http://rmarkdown.rstudio.com/rmarkdown_websites.html).
 
-## Procedure
+### Updates to the website
 
-### Prerequisites
+- Once you've cloned the repo and have all the packages installed, the updating the website is done via:
 
-- Make sure that you have the latest versions of R, RStudio and package rmarkdown. I had problems of encoding because of that. 
-- Make sure that you have enabled Git in RStudio. More information can be found [there](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN).
-- You need a GitHub account.
+```
+rmarkdown::render_site(encoding = "UTF-8")
+```
 
-### Make the first version of your website
+- Then, commit and push everything back to the robinsonlab.github.io repo
 
-- Fork this repo (use the green button "Clone" and make sure you use SSH, not HTTPS) and rename it to be 'YOURGITHUB.github.io' (in Settings of your brand new repo).
-- Get the link from cloning the repo. Then, go to RStudio, create a New Project > Version Control > Git and copy this link. You have cloned your new repo as an R project.
-- Use `rmarkdown::render_site(encoding = "UTF-8")` in the console.
-- Commit and push everything from RStudio.
-- Go see your new website at https://YOURGITHUB.github.io/.
+### Commiting changes
 
-### Change the content of your website
+Please do not pull to master but use a separate branch instead. To do this, run this locally
 
-- Modify `_site.yml`, `index.Rmd`, `about.Rmd`, `cv.Rmd` and `CV.pdf` with your own content. 
-- Use `rmarkdown::render_site(encoding = "UTF-8")` again. At any moment, you can preview your website locally, by rendering your site and viewing any of your local html file in your Web Browser. 
-- Commit and push everything from RStudio.
-- Go see your new website with your own content at https://YOURGITHUB.github.io/.
+```
+git checkout master
+git pull
+git checkout -b <new_branch_name>
+```
 
-### The blog part
+Edit the files in your machine and then push the changes to GitHub by
 
-For now, the 'Blog' link is giving a 404 page. 
+```
+git push --set-upstream origin <new_branch_name>
+```
 
-If you want to add a static blog to your webpage, go [there](https://github.com/privefl/jekyll-now-r-template).
+On Github, make a pull request for merging your branch to master (and assign a reviewer).
 
-## Two examples
+Once the pull request is merged, it may be a good idea to delete the new branch (it will tell you “it is now safe to delete the new branch”), to avoid branches stacking up in the GitHub repo.
 
-You can see for example 
-- [my own website](https://privefl.github.io/),
-- [the website of the R user group in Grenoble](https://r-in-grenoble.github.io/).
+If you are continuing to work on a local branch after someone else has made changes to the GitHub repo master branch, it is often easier to merge the master branch into your local branch before pushing your local branch:
 
-## Conclusion
+```
+git checkout master
+git pull
+git checkout <your_branch>
+git merge master
+```
 
-As a reminder, all credit goes to the geniuses at RStudio (thanks also to [GitHub pages](https://pages.github.com/)). I just made some minor modifications and made a tuto about how to use all this together.
+### Adding publications
 
-If anything is false or not clear enough, feel free to contact me or open an issue.
-If it is an issue only related with R Markdown, you'll find a better answer posting [there](https://github.com/rstudio/rmarkdown).
+The publication list (`publications.html`, generated from `publications.Rmd`) is automatically populated when the website is built, by pulling down and reformatting PubMed results for the search `Robinson Mark D[au]`, using the [`rentrez`](https://cran.r-project.org/web/packages/rentrez/index.html) R package. Most of the time the results are correct, but since there are multiple authors named "Mark D Robinson" in the database, the list of publications should occasionally be checked for correctness. 
+
+Also [bioRxiv](https://www.biorxiv.org/) preprints can be included, by explicitly providing the corresponding DOIs. 
+
+The following parts of `publications.Rmd` may need to be modified (all done within the first code chunk):
+
+- The list of incorrectly pulled down PubMed publication records (`pmid_remove`). Once a PubMed ID has been added to this list, it will be excluded from all future renderings of the publication list. 
+- The list of PubMed IDs to add manually (`pmid_add`).
+- The list of bioRxiv preprints to include (`biorxiv_dois`).
+- Links to GitHub repositories or software packages accompanying a paper or preprint. 
+
+### Adding members
+
+### Adding news item
+
+## Template examples
+
+Previous examples of this website template:
+- [personal website](https://privefl.github.io/)
+- [R user group in Grenoble](https://r-in-grenoble.github.io/)

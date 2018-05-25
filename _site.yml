@@ -1,29 +1,32 @@
-name: "HLindsay"                                  # CHANGE HERE 
+name: "robinsonlabuzh"
 output_dir: "."
 navbar:
-  title: "Test"                               # CHANGE HERE 
+  title: "Statistical Bioinformatics @SIB @UZH"
   type: inverse
   left:
-    - text: "Home"
-      icon: fa-home
-      href: index.html
-    - text: "About"
-      icon: fa-user 
-      href: about.html
-    - text: "CV"
-      icon: fa-file-pdf-o
-      href: cv.html
-    - text: "Blog"
-      icon: fa-rss
-      href: https://HLindsay.github.io/blog/    # CHANGE HERE 
   right:
-    - text: "Contact me"
-      icon: fa-envelope-o
-      href: mailto:YOUREMAIL                      # CHANGE HERE 
-    - text: "GitHub"
-      icon: fa-github
-      href: https://github.com/HLindsay         # CHANGE HERE 
+    - text: "research"
+      icon: fa-area-chart
+      href: research.html
+    - text: "publications"
+      icon: fa-file-text-o
+      href: publications.html
+    - text: "tools"
+      icon: fa-code
+      href: tools.html
+    - text: "people"
+      icon: fa-user
+      href: people.html
+    - text: "teaching"
+      icon: fa-graduation-cap
+      href: teaching.html
+    - text: "news"
+      icon: fa-newspaper-o
+      href: news.html
+    - text: "more info"
+      icon: fa-info-circle
+      href: more_info.html
 output:
   html_document:
-    theme: cosmo
+    theme: flatly
     highlight: textmate
